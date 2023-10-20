@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+$tomato: hsl(4, 100%, 67%);
+$dark-slate-grey: hsl(234, 29%, 20%);
+$charcoal-grey: hsl(235, 18%, 26%);
+$grey: hsl(231, 7%, 60%);
+$white: hsl(0, 0%, 100%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+}
+
+@mixin flex-container($direction: row, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.container {
+  height: 100vh;
+}
+
+.left-top {
+  height: 40vh;
+  width: 100%;
+  background-image: url("../assets/images/illustration-sign-up-mobile.svg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.right-bottom {
+  padding: 0 1.25rem;
+  @include flex-container($direction: column, $align: flex-start);
+  gap: 2rem;
+  h1 {
+    color: $dark-slate-grey;
+    font-size: 3rem;
+  }
+  h1 + div {
+    font-size: 1.25rem;
+    color: $charcoal-grey;
+    line-height: 1.5;
+  }
+
+  .all {
+    @include flex-container($justify: flex-start);
+    gap: 15px;
+    margin-top: 1.2rem;
+  }
+  .all div {
+    font-size: 1.35rem;
+    align-self: baseline;
+  }
+}
+
+.email {
+  width: 100%;
+  .email-header {
+    @include flex-container($justify: space-between);
+    padding: 0.5rem 0.25rem;
+    font-weight: 700;
+  }
+  input {
+    width: 100%;
+    padding: 1.2rem 1.1rem;
+    margin-top: 1rem;
+    border: 1px solid $grey;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    outline: none;
+    &::placeholder {
+      font-weight: 700;
+      color: $grey;
+      font-size: 1.25rem;
+    }
+    &.error {
+      color: $tomato;
+      background-color: hsla(4, 100%, 67%, 0.447);
+      border: 1px solid $tomato;
+    }
+  }
+
+  #show-error.error {
+    display: block;
+    color: $tomato;
+  }
+}
+
+.button {
+  width: 100%;
+  margin: 1.5rem 0 2rem 0;
+  @include flex-container;
+  padding: 1.35rem;
+  font: {
+    size: 1.2rem;
+    weight: 700;
+  }
+  color: $white;
+  background-color: $dark-slate-grey;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+}
+
+.second-page {
+  padding: 1rem;
+  height: 100vh;
+  @include flex-container(
+    $direction: column,
+    $align: flex-start,
+    $justify: flex-end
+  );
+  gap: 20%;
+  > div {
+    @include flex-container($direction: column, $align: flex-start);
+    gap: 1.75rem;
+    color: $charcoal-grey;
+    h1 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.25rem;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+  }
+  & div:last-child {
+    width: 100%;
+  }
+  button {
+    @extend .button;
+  }
+  button:hover {
+    background-color: $tomato;
+    box-shadow: 0 10px 10px -5px #999;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    height: 100vh;
+    background-color: $charcoal-grey;
+    width: 100%;
+    @include flex-container($direction: row);
+  }
+  .first-page {
+    height: 500px;
+    max-width: 800px;
+    padding-right: 2rem;
+    @include flex-container($direction: row-reverse);
+    background-color: $white;
+    border-radius: 20px;
+  }
+  .left-top {
+    height: 450px;
+    width: 350px;
+    background: url("../assets/images/illustration-sign-up-desktop.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 20px;
+  }
+  .right-bottom {
+    padding: 0rem 2rem;
+    height: 400px;
+    width: 400px;
+    gap: 0.75rem;
+    h1 {
+      font-size: 2.25rem;
+    }
+    h1 + div {
+      font-size: 1rem;
+    }
+    .all {
+      margin-top: 0.5rem;
+    }
+    .all div {
+      font-size: 0.75rem;
+      align-self: center;
+    }
+  }
+  .email {
+    .email-header {
+      padding: 0.5rem 0.25rem 0 0.25rem;
+      font-size: 0.9rem;
+    }
+    input {
+      padding: 0.75rem;
+      font-size: 1rem;
+      &::placeholder {
+        font-size: 1rem;
+      }
+    }
+    .button {
+      font-size: 1rem;
+      padding: 1rem;
+      margin-bottom: 0;
+      margin-top: 1rem;
+    }
+  }
+  .second-page {
+    background-color: $white;
+    height: 450px;
+    width: 400px;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    border-radius: 20px;
+
+    gap: 20px;
+    > div {
+      gap: 1rem;
+      img {
+        height: 50px;
+      }
+      h1 {
+        font-size: 2.75rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+.hidden{
+    display: none;
+}
